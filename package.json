@@ -1,0 +1,22 @@
+{
+  "name": "appsheet-people-app",
+  "version": "1.0.0",
+  "description": "Appsheet people app fetching the yongest 5 people",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha ./test/**/*.js",
+    "start": "node index.js"
+  },
+  "author": "George Ivanov",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.8",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1"
+  }
+}

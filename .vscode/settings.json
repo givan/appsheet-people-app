@@ -1,0 +1,5 @@
+{
+    "mocha.env": {
+        "NODE_ENV" : "development"
+    }
+}

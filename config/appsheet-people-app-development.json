@@ -1,0 +1,6 @@
+{
+    "PeopleService" : {
+        "baseUrl" : "https://appsheettest1.azurewebsites.net/",
+        "timeoutMs": 1000
+    }
+}
