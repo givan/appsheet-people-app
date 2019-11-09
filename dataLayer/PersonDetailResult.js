@@ -1,3 +1,6 @@
+/**
+ * A single person detail result as returned by the Person service detail endpoint
+ */
 class PersonDetailResult {
     /**
      * Factory method that initializes the new instance using the response from the /detail person endpoint

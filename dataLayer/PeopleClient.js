@@ -67,6 +67,10 @@ class PeopleClient {
         });
     }
 
+    /**
+     * Calls Person's service detail endpoint to fetch the person details with the given id
+     * @param {number} personId the person id whose details will be retrieved
+     */
     detail(personId) {
         return new Promise((resolve, reject) => {
             if (!personId) {
