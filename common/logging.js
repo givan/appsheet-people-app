@@ -2,7 +2,7 @@ const { createLogger, format, transports } = require('winston');
 const path = require('path');
 
 const logger = createLogger({
-  level: 'debug',
+  level: 'info',
   format: format.combine(
     format.label({ label: path.basename(process.mainModule.filename) }),
     format.colorize(),
