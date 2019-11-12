@@ -98,8 +98,11 @@ class FetchAllPeopleWithDetails {
 
                 const peopleWithDetails = await this.fetchPeopleWithDetails(token);
 
-                // store all the people found in this fetch
-                yield peopleWithDetails.people;
+                // yield store all the people found in this batch one by one
+                // so we can hook up other generators to do more work on these entities
+                for (let personDetail of peopleWithDetails.people) {
+                    yield personDetail;
+                }
 
                 // if we find a new token in the response, we'll continue reading the next batch
                 // else we'll stop the current iteration
@@ -126,8 +129,8 @@ class FetchAllPeopleWithDetails {
 
             let fetchedPeople = []; // accumulates all people records read so far
 
-            for await (const peopleBatch of this.fetchAllPeopleIter()) {
-                fetchedPeople.push(...peopleBatch);
+            for await (let personDetail of this.fetchAllPeopleIter()) {
+                fetchedPeople.push(personDetail);
             }
 
             resolve(fetchedPeople);
