@@ -1,4 +1,4 @@
-# appsheet-pepole-app
+# appsheet-people-app
 
 ## Pre-requisites:
 1/ You will need to install node 10.16.x or above. Run the following command to verify what version you have:
@@ -23,7 +23,7 @@ To run the app, inside the root repo folder, execute the followign command:
 $ npm start --youngest=5
 ```
 
-This will find the youngest 5 persons with a valid US number sorted by name.
+This will find the youngest 5 persons with a valid US number sorted by name. The results will be printed in the console in JSON format under the line "Youngest 5 people with a valid US number".
 
 ## Application design
 
