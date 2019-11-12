@@ -41,3 +41,5 @@ Below are some additional folders and their purpose:
 ## How the design of the end-to-end service + app should change if the dataset were three orders of magnitude larger
 
 The current People API is pretty chatty with passing in the token for every page to read. If the dataset is three orders of magnitude larger (that is 1,000 larger), obviously that will mean 100 calls to /list endpoint and then assuming the page size remains 10 ids, that will result in 30,000 API calls for the details endpoint. In such cases, I'd suggest to modify the service to apply this filtering (youngest X and having valid us phone) as close to the data as possible. One concrete solution will be to implement the People API as GraphQL API which is allows for such filtering and response schema selection as close to the data as possible. 
+
+For the app itself, we can levarate the node child processes to make concurrent parallel calls to fetch multiple pages at the same time and pull the people details (rather than having 1 process what we have right now which will not scale and be performant granted we need to fetch ).
