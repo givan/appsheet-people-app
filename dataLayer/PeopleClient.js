@@ -47,23 +47,19 @@ class PeopleClient {
      * @param {string} token The token received from a previous call to /list endpoint (optional)
      */
     list(token) {
-        return new Promise((resolve, reject) => {
-            let options = {
-                method: 'GET',
-                uri: this._peopleListUri.toString(),
-                json: true // Automatically parses the JSON string in the response
-            };
-    
-            if (token) {
-                options.qs = this._getListQueryString(token);
-            }
-             
-            rp(options).then(listResponse => {
-                const result = PeopleListResult.createFrom(listResponse);
-                resolve(result);
-            }).catch(error => {
-                reject(error);
-            });
+        let options = {
+            method: 'GET',
+            uri: this._peopleListUri.toString(),
+            json: true // Automatically parses the JSON string in the response
+        };
+
+        if (token) {
+            options.qs = this._getListQueryString(token);
+        }
+         
+        return rp(options).then(listResponse => {
+            const result = PeopleListResult.createFrom(listResponse);
+            return result;
         });
     }
 
@@ -72,23 +68,19 @@ class PeopleClient {
      * @param {number} personId the person id whose details will be retrieved
      */
     detail(personId) {
-        return new Promise((resolve, reject) => {
-            if (!personId) {
-                return reject(new Error('personId is required for calling detail endpoint'));
-            }
+        if (!personId) {
+            throw new Error('personId is required for calling detail endpoint');
+        }
 
-            const detailUrl = new URL(`${DETAIL_ENDPOINT}/${personId}`, this._peopleBaseUrl).toString();
-            let options = {
-                uri: detailUrl,
-                json: true // Automatically parses the JSON string in the response
-            };
+        const detailUrl = new URL(`${DETAIL_ENDPOINT}/${personId}`, this._peopleBaseUrl).toString();
+        let options = {
+            uri: detailUrl,
+            json: true // Automatically parses the JSON string in the response
+        };
 
-            rp(options).then(detailResponse => {
-                const result = PersonDetailResult.createFrom(detailResponse);
-                resolve(result);
-            }).catch(error => {
-                reject(error);
-            });
+        return rp(options).then(detailResponse => {
+            const result = PersonDetailResult.createFrom(detailResponse);
+            return result;
         });
     }
 
